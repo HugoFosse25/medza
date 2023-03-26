@@ -1,7 +1,12 @@
+import { response } from "express";
+
 const modal = document.getElementById('modal');
 const btnInscription = document.getElementById('inscription-btn');
 const span = document.getElementsByClassName('close')[0];
 const btnConfirmInscription = document.getElementById('btn-confirm-inscription');
+const inputName = document.getElementById('username');
+const inputEmail = document.getElementById('email');
+const inputPasswd = document.getElementById('password');
 
 const ipAdress = "192.168.0.23";
 const APIport = "3000";
@@ -45,5 +50,24 @@ fetch("http://" + ipAdress + ":" + APIport + "/api/getTableProduct", {method : '
 })
 
 btnConfirmInscription.addEventListener('click', () => {
-  
+  event.preventDefault();
+  //Vérifiez si l'utilisateur a bien renseigner tout les champs
+  fetch("http://" + ipAdress + ":" + APIport + "/api/newRegistration", {
+    method : 'POST',
+    headers: {
+      "Content-Type": 'application/json'
+    },
+    body: JSON.stringify({
+      "name": inputName.innerHTML,
+      "email": inputEmail.innerHTML,
+      "passwd": inputPasswd.innerHTML,
+    })
+  .then(response => {
+    if(response.status == 200) {
+
+    }else {
+
+    }
+  })
+  })
 })
