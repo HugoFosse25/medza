@@ -24,9 +24,10 @@ app.get('/api/getTableProduct', async (req, res, next) => {
 
 app.post('/api/newRegistration', async (req, res, next) => {
     try{
+        //On vérifie si il n'existe déja pas un utilisateur avec le même nom ou email
         let buyerWithSameEmail = await query(`SELECT * FROM buyer WHERE email = "${req.body.email}" OR name ="${req.body.name}"`);
         if(buyerWithSameEmail == 0) {
-            
+            //On hash le MDP avec la clé de hashage salt
             const hash = bcrypt.hashSync(req.body.passwd, salt);
             const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
             await query(`INSERT INTO buyer (name, email, created_at, passwd_hash) VALUES (${req.body.name}, ${req.body.email}, ${currentDateTime}, ${hash})`);
