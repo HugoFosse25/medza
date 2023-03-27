@@ -178,8 +178,6 @@ body {
     cursor: pointer;
   }
   
-  /* Style du formulaire d'inscription */
-
 /* Formulaire d'inscription */
 #signup-form label {
   display: block;
@@ -221,7 +219,16 @@ body {
   padding-bottom: 10px;
 }
 
+/* Message d'erreur du formulaire d'inscription*/
+#error-message {
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
 
-  
+#error-message p {
+  color: red;
+  font-size: 0.9em;
+  text-align: justify;
+}
   
   
